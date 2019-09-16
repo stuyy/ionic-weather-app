@@ -9,12 +9,14 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    loadChildren: './home/home.module#HomePageModule'
   },
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+  },
+  { path: 'forecast', loadChildren: './forecast/forecast.module#ForecastPageModule' },
+  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' }
 ];
 
 @NgModule({
