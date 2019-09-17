@@ -9,13 +9,11 @@ export class WeatherService {
   constructor(private http: HttpClient) {
     
   }
-  getWeather(city) {
-    console.log(city)
-    this.http.get(`http://localhost:3000/api/weather/`, {
+  getWeather(cities) {
+    return this.http.get(`http://localhost:3000/api/weather`, {
       params: {
-        cities: ['New York', 'Queens', 'Los Angeles']
+        cities: cities
       }
     })
-    .subscribe(data => console.log(data))
   }
 }
