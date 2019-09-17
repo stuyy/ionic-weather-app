@@ -31,7 +31,20 @@ async def home(request):
         temp_city['conditions'] = data['weather']
         temp_city['maxTemp'] = data['main']['temp_max']
         temp_city['minTemp'] = data['main']['temp_min']
-        temp_city['icon'] = 'sunny'
+        
+        if temp_city['conditions'][0]['main'] == 'Mist' or temp_city['conditions'][0]['main'] == 'Fog':
+            temp_city['icon'] = 'cloudy'
+        elif temp_city['conditions'][0]['main'] == 'Clear':
+            temp_city['icon'] = 'partly-sunny'
+        elif temp_city['conditions'][0]['main'] == 'Clouds':
+            temp_city['icon'] = 'cloudy'
+        elif temp_city['conditions'][0]['main'] == 'Rain' or temp_city['conditions'][0]['main'] == 'Drizzle':
+            temp_city['icon'] = 'rainy'
+        elif temp_city['conditions'][0]['main'] == 'Snow':
+            temp_city['icon'] = 'snow'
+        elif temp_city['conditions'][0]['main'] == 'Thunderstorm':
+            temp_city['icon'] = 'thunderstorm'
+            
         weather_results.append(temp_city)
     return response.json(weather_results)
 
