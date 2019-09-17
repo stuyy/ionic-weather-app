@@ -29,7 +29,8 @@
                  [ring/ring-defaults "0.3.2"]
                  [selmer "1.12.14"]
                  [clj-http "3.10.0"]
-                 [cheshire "5.9.0"]]
+                 [cheshire "5.9.0"]
+                 [org.clojure/data.json "0.2.6"]]
 
   :min-lein-version "2.0.0"
   
