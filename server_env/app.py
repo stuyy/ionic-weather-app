@@ -14,12 +14,26 @@ API_KEY = load_api_key()
 weather = Weather(API_KEY)
 osm = OpenStreetMap()
 
+'''
+    Reference the args from the request object. Loop through the cities list and make requests to each city, appending the returned data to weather_results list.
+'''
 @app.route("/api/weather/")
 async def home(request):
     cities = request.args['cities']
-    print(cities)
-    data = await weather.get_weather(cities[0])
-    return response.json(data.json())
+    weather_results = []
+    for city in cities:
+        temp_city = {}
+        data = await weather.get_weather(city)
+        temp_city['city'] = data['name']
+        temp_city['state'] = await osm.get_state(data['coord']['lat'],data['coord']['lon'])
+        temp_city['country'] = data['sys']['country']
+        temp_city['temperature'] = data['main']['temp']
+        temp_city['conditions'] = data['weather']
+        temp_city['maxTemp'] = data['main']['temp_max']
+        temp_city['minTemp'] = data['main']['temp_min']
+        temp_city['icon'] = 'sunny'
+        weather_results.append(temp_city)
+    return response.json(weather_results)
 
 @app.route("/api/forecast/<city>")
 async def forecast_route(request, city):
