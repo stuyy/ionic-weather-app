@@ -32,4 +32,9 @@ npm-debug.log*
 /resources/ios
 /resources/windows
 /www
+/server_env/lib
+/server_env/bin
+/server_env/include
+/server_env/.Python
 config.json
+./config
