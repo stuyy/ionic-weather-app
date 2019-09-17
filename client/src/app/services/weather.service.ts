@@ -11,10 +11,11 @@ export class WeatherService {
   }
   getWeather(city) {
     console.log(city)
-    this.http.get('http://localhost:3000/api/weather', {
+    this.http.get(`http://localhost:3000/api/weather/`, {
       params: {
-        city: 'New York'
+        cities: ['New York', 'Queens', 'Los Angeles']
       }
-    }).subscribe(data => console.log(data))
+    })
+    .subscribe(data => console.log(data))
   }
 }
