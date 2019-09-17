@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Weather } from '../../models/Weather';
+import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
   selector: 'app-weather',
@@ -10,7 +11,7 @@ export class WeatherComponent implements OnInit {
 
   weather: Weather[];
 
-  constructor() { }
+  constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
     this.weather = [
@@ -33,6 +34,7 @@ export class WeatherComponent implements OnInit {
         icon: 'rainy'
       }
     ]
+    this.weatherService.getWeather('New York')
   }
 
 }
