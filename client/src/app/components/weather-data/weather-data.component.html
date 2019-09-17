@@ -1,0 +1,7 @@
+<ion-card class="weather-data" button=true (click)="routeForecast(weather)">
+  <ion-card-header>
+    <ion-card-title>{{weather.temperature}} &#176; F</ion-card-title>
+  </ion-card-header>
+  <ion-card-subtitle>{{weather.city}}, {{weather.country}}</ion-card-subtitle>
+  <ion-icon [name]="weather.icon" style="font-size: 96px;"></ion-icon>
+</ion-card>
