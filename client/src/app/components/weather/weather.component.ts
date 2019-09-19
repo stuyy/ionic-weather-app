@@ -15,7 +15,7 @@ export class WeatherComponent implements OnInit {
   constructor(
     private weatherService: WeatherService,
     private loader: LoadingController) { }
-
+  
   ngOnInit() {
     this.presentLoader();
     this.weatherService.getWeather([

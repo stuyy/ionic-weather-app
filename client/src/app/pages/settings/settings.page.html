@@ -8,5 +8,38 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-buttons>
+        <ion-button *ngIf="!displayDialog" (click)="toggleDialog($event)">
+          <ion-icon size=large name="add-circle-outline"></ion-icon>
+          <ion-text class="ion-padding-start">Add New Location</ion-text>
+        </ion-button>
+        <ion-button *ngIf="displayDialog" (click)="toggleDialog($event)">
+          <ion-icon size=large name="checkmark-circle-outline"></ion-icon>
+          <ion-text class="ion-padding-start">Done</ion-text>
+        </ion-button>
+      </ion-buttons>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item-group *ngIf="displayDialog">
+        <ion-label position="floating">Enter a City</ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-align-self-start">
+              <ion-input name="city" [(ngModel)]="cityName" placeholder="e.g: New York"></ion-input>
+            </ion-col>
+            <ion-col>
+            <ion-button align-self-start (click)="addNewLocation($event)"> 
+              <ion-icon name="add-circle"></ion-icon>
+            </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item-group>
+      <ion-list *ngFor="let name of currentLocations">
+        {{name.name}}
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
