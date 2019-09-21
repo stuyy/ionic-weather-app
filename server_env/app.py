@@ -44,6 +44,8 @@ async def home(request):
             temp_city['icon'] = 'snow'
         elif temp_city['conditions'][0]['main'] == 'Thunderstorm':
             temp_city['icon'] = 'thunderstorm'
+        elif temp_city['conditions'][0]['main'] == 'Haze':
+            temp_city['icon'] = 'cloudy-night'
             
         weather_results.append(temp_city)
     return response.json(weather_results)
@@ -60,4 +62,3 @@ async def forecast_route(request, city):
 
 if __name__ == "__main__":
     app.run('0.0.0.0', port=3000, debug=True)
-

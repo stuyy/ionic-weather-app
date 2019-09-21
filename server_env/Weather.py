@@ -8,7 +8,7 @@ class Weather:
 
     async def get_weather(self, city_name):
         url = self.weather_base_url + city_name + "&appid=" + self.token + "&units=" + self.units
-        return await requests.get(url)
+        return (await requests.get(url)).json()
 
     async def get_forecast(self, city_name):
         url = "{}{}{}{}{}{}".format(self.forecast_base_url, city_name, "&appid=", self.token, "&units=", self.units)
@@ -25,7 +25,7 @@ class OpenStreetMap:
 
     async def get_state(self, lat, lon):
         data = await self.get_location(lat, lon)
-        return data['address']['state']
+        return data['state']
 
     async def get_city(self, lat, lon):
         data = await self.get_location(lat, lon)
