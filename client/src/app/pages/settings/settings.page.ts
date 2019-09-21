@@ -24,20 +24,21 @@ export class SettingsPage implements OnInit {
     try {
       const settings = await this.storage.get('settings');
       if(settings !== null) {
-        console.log(settings);
-        if(settings.some(el => el.toLowerCase() === this.cityName.toLowerCase())) {
-          console.log('Duplicate');
-        } else {
+        if(!settings.some(el => el.toLowerCase() === this.cityName.toLowerCase())) {
           settings.push(this.cityName); // Push the new city to the array.
           this.storage.set('settings', settings);
           this.currentLocations = settings;
         }
       } else {
-        this.storage.set('settings', []);
+        let result = await this.storage.set('settings', [this.cityName]);
+        this.currentLocations = result;
       }
     }
     catch(err) {
 
+    }
+    finally {
+      this.cityName = '';
     }
   }
   toggleDialog(event) {
