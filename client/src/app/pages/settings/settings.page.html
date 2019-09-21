@@ -26,11 +26,11 @@
         <ion-label position="floating">Enter a City</ion-label>
         <ion-grid>
           <ion-row>
-            <ion-col class="ion-align-self-start">
+            <ion-col>
               <ion-input name="city" [(ngModel)]="cityName" placeholder="e.g: New York"></ion-input>
             </ion-col>
-            <ion-col>
-            <ion-button align-self-start (click)="addNewLocation($event)"> 
+            <ion-col size="2">
+            <ion-button (click)="addNewLocation($event)"> 
               <ion-icon name="add-circle"></ion-icon>
             </ion-button>
             </ion-col>
@@ -38,7 +38,7 @@
         </ion-grid>
       </ion-item-group>
       <ion-list *ngFor="let name of currentLocations">
-        {{name.name}}
+        {{name}}
       </ion-list>
     </ion-card-content>
   </ion-card>
