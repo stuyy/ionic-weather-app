@@ -16,14 +16,10 @@ export class WeatherComponent implements OnInit {
     private weatherService: WeatherService,
     private loader: LoadingController) { }
   
-  ngOnInit() {
+  async ngOnInit() {
     this.presentLoader();
-    this.weatherService.getWeather([
-      'New York',
-      'Queens',
-      'Los Angeles',
-      'Toronto'
-    ]).subscribe((data: any) => {
+    let weatherObservable = await this.weatherService.getWeather();
+    weatherObservable.subscribe((data: any) => {
       this.weather = data;
     }, err => {
       if(err) throw err;
